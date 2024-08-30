@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Home - SQL Injection Detection{% endblock %}
+
+{% block content %}
+<div class="jumbotron text-center">
+    <h1 class="display-4"><b>SQL Injection Detection</b></h1>
+    <p class="lead">Use our machine learning model to detect potential SQL injection vulnerabilities.</p>
+    <hr class="my-4">
+    <p>Enter your SQL query below to analyze</p>
+    <a class="btn btn-primary btn-lg" href="#queryForm" role="button">Get Started</a>
+</div>
+
+<div id="queryForm" class="card mt-5">
+    <div class="card-header">
+        Analyze SQL Query
+    </div>
+    <div class="card-body">
+        <form id="sqlForm" method="post">
+            <div class="form-group">
+                <label for="sqlQuery">SQL Query</label>
+                <textarea class="form-control" id="sqlQuery" name="query" placeholder="Enter your SQL query here..."
+                          required rows="3"></textarea>
+                <div class="invalid-feedback">
+                    Please enter a SQL query.
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success">Analyze</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+{% endblock %}
